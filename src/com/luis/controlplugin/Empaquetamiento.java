@@ -37,15 +37,27 @@ public final class Empaquetamiento implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Un comando para abrir la terminal.
+        
 try{
+    //Pido los nombres necesarios para el empaquetado
+    //Nombre del jar que deseo crear ejecutable
     String jar=JOptionPane.showInputDialog("Nome de tu jar: ", e);
-    String mainclass=JOptionPane.showInputDialog("Nombre de tu Main Class:");
-    String nombre=JOptionPane.showInputDialog("Nombre:");
-    String nombreapp=JOptionPane.showInputDialog("Nombre de la App");
-    String[] cmd={"javapackager", "-deploy", "-native" ,"-outdir","sample","srcfiles",jar,"-appclass",mainclass,"-name",nombre,"-title",nombreapp };
-  Runtime.getRuntime().exec("C:\\Windows\\System32\\cmd.exe");
-  
+    //Nombre de la Main Class
+    String mainclass=JOptionPane.showInputDialog("Nombre de tu Main Class: ");
+    //Nombre que quiero
+    String nombre=JOptionPane.showInputDialog("Nombre: ");
+    //Nombre de la aplicacion creada
+    String nombreapp=JOptionPane.showInputDialog("Nombre de la App ");
+    //El comando entero para crearlo
+    String[] cmd={"javapackager ", "-deploy ", "-native " ,"-outdir ","sample ","srcfiles ",jar,"-appclass ",mainclass,"-name ",nombre,"-title ",nombreapp };
+    //llama al terminal y va pegando los codigos anteriores
+    Process process=Runtime.getRuntime().exec(cmd);
+    
+    InputStream inputstream=process.getInputStream();
+    
+    BufferedInputStream bufferedinputstream =new BufferedInputStream(inputstream);
+    
+    JOptionPane.showMessageDialog(null,"SUU");
    
 }catch(Exception ea){
     System.out.println("Error");
