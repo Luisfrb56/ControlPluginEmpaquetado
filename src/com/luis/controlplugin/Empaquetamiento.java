@@ -3,10 +3,13 @@ package com.luis.controlplugin;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import javax.swing.AbstractAction;
+import javax.swing.JOptionPane;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionReferences;
@@ -36,10 +39,16 @@ public final class Empaquetamiento implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         //Un comando para abrir la terminal.
 try{
-    Runtime.getRuntime().exec("C:\\Windows\\System32\\cmd.exe /K start cmd.exe");
+    String jar=JOptionPane.showInputDialog("Nome de tu jar: ", e);
+    String mainclass=JOptionPane.showInputDialog("Nombre de tu Main Class:");
+    String nombre=JOptionPane.showInputDialog("Nombre:");
+    String nombreapp=JOptionPane.showInputDialog("Nombre de la App");
+    String[] cmd={"javapackager", "-deploy", "-native" ,"-outdir","sample","srcfiles",jar,"-appclass",mainclass,"-name",nombre,"-title",nombreapp };
+  Runtime.getRuntime().exec("C:\\Windows\\System32\\cmd.exe");
+  
    
 }catch(Exception ea){
-    
+    System.out.println("Error");
 }
             
         }
