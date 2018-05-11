@@ -34,22 +34,13 @@ public final class Empaquetamiento implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-       try{
-           Runtime rt=Runtime.getRuntime();
-           Process pr=rt.exec("C:\\control.exe");
-           BufferedReader input=new BufferedReader(new InputStreamReader(pr.getInputStream()));
-           String line=null;
-           while((line=input.readLine()) !=null){
-           System.out.println(line);
-           
-       }
-           int exitVal=pr.waitFor();
-           System.out.println("Exoted with error code "+exitVal);
-           
-       }catch(Exception ea){
-           System.out.println(ea.toString());
-           ea.printStackTrace();
-       }
+        //Un comando para abrir la terminal.
+try{
+    Runtime.getRuntime().exec("C:\\Windows\\System32\\cmd.exe /K start cmd.exe");
+   
+}catch(Exception ea){
+    
+}
             
         }
     }
